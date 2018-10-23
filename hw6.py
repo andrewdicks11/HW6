@@ -2,13 +2,38 @@ import re
 import unittest
 
 def sumNums(fileName):
-    pass
+    file = open(fileName, 'r')
+    lst = []
+    for line in file:
+        line = line.rstrip()
+        x = re.findall('[0-9]+', line)
+        if len(x) > 0:
+            lst = lst + x
+    total = 0
+    for num in lst:
+        total = total + int(num)
+    file.close()
+    return total
 
 def countWord(fileName, word):
-    pass
+    file = open(fileName, 'r')
+    lst = []
+    str1 = r"\b" + word + r"\b"
+    for line in file:
+        x = re.findall(str1, line.lower())
+        if len(x) > 0:
+            lst = lst + x
+    return len(lst)
 
 def listURLs(fileName):
-    pass
+    file = open(fileName, 'r')
+    lst = []
+    str1 = "\S+w[.]\S+[.]\S+"
+    for line in file:
+        x = re.findall(str1, line)
+        if len(x) > 0:
+            lst = lst + x
+    return lst
 
 
 class TestHW6(unittest.TestCase):
